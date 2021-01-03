@@ -1,0 +1,37 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+ptpython = "*"
+ipython = "*"
+mypy = "*"
+pytest-cov = "*"
+black = "*"
+flake8 = "*"
+flake8-bugbear = "*"
+prettyprinter = "*"
+setuptools = "*"
+wheel = "*"
+pyyaml = "*"
+pytest-pudb = "*"
+pytest-mock = "*"
+twine = "*"
+pillow = "*"
+tox = "*"
+tox-pyenv = "*"
+
+[packages]
+requests = "*"
+attrs = "*"
+cattrs = "*"
+python-dateutil = "*"
+
+[requires]
+python_full_version = "3.8.2"
+
+[pipenv]
+# for `black`
+allow_prereleases = true

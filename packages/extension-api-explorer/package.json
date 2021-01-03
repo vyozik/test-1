@@ -1,0 +1,27 @@
+{
+  "name": "@looker/extension-api-explorer",
+  "version": "0.1.4-alpha.4",
+  "description": "Looker API Explorer extension version  ",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "homepage": "https://github.com/looker-open-source/sdk-codegen/tree/master/packages/extension-api-explorer",
+  "scripts": {
+    "bundle": "tsc && webpack --config webpack.prod.config.js",
+    "deploy": "bin/deploy",
+    "develop": "webpack-dev-server --hot --disable-host-check --port 8080 --https --config webpack.dev.config.js",
+    "watch": "yarn lerna exec --scope @looker/extension-api-explorer --stream 'BABEL_ENV=build babel src --root-mode upward --out-dir lib --source-maps --extensions .ts,.tsx --no-comments --watch'"
+  },
+  "dependencies": {
+    "@looker/api-explorer": "^0.1.4-alpha.4",
+    "@looker/extension-sdk": "^0.13.0-alpha.1",
+    "@looker/extension-sdk-react": "^0.7.0-alpha.1",
+    "@looker/run-it": "^0.1.4-alpha.4",
+    "@looker/sdk": "^0.3.7-beta.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

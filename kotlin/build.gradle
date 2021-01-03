@@ -1,0 +1,80 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'com.diffplug.spotless' version '5.7.0'
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+group = "com.looker.sdk"
+
+defaultTasks 'jar'
+
+repositories {
+    mavenCentral()
+    maven { url "https://dl.bintray.com/kotlin/ktor" }
+    maven { url "https://dl.bintray.com/kotlin/kotlinx" }
+    maven { url "https://jitpack.io" }
+}
+
+
+sourceSets {
+    main.kotlin.srcDirs += 'src/main/'
+    test.kotlin.srcDirs += 'src/test'
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+
+    implementation "org.ini4j:ini4j:0.5.4"
+
+    implementation "io.ktor:ktor-client:$ktorVersion"
+    implementation "io.ktor:ktor-client-okhttp:$ktorVersion"
+    implementation "io.ktor:ktor-client-json:$ktorVersion"
+    implementation "io.ktor:ktor-client-jackson:$ktorVersion"
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0-RC'
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    testImplementation 'junit:junit:4.11'
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+spotless {
+    kotlin {
+        ktlint("0.39.0").userData(["disabled_rules": "no-wildcard-imports"])
+    }
+}
+
+test {
+    testLogging {
+        exceptionFormat "full"
+    }
+}
+
+
+//android {
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+//}

@@ -1,0 +1,54 @@
+#!/bin/bash
+
+for arg in "$@"
+do
+    if [ "$arg" == "--help" ] || [ "$arg" == "-h" ]
+    then
+        echo "Test options: all, typescript, kotlin, swift, python"
+        echo "Multiple languages can be specified at the same time"
+        echo "'all' is the default"
+    fi
+done
+
+if [ $# == 0 ] || [ "$1" == "all" ]
+then
+  tests="typescript kotlin swift python"
+else
+  tests="$*"
+fi
+
+./bin/unit_test "${tests}"
+
+echo "Smoking SDKs: ${tests} ..."
+
+if [[ $tests == *typescript* ]]
+then
+  echo "Smoking Typescript SDK ..."
+  JEST_JUNIT_OUTPUT_DIR=results JEST_JUNIT_OUTPUT_NAME=ts_sdk_smoke.xml yarn jest packages/sdk/test --reporters=default --reporters=jest-junit
+fi
+
+if [[ $tests == *python* ]]
+then
+  cd python || exit
+  echo "Smoking Python SDK ..."
+  PIPENV_DOTENV_LOCATION=tests/integration/.env pipenv run tox
+  cd ..
+fi
+
+if [[ $tests == *kotlin* ]]
+then
+  cd kotlin || exit
+  echo "Smoking Kotlin SDK ..."
+  ./gradlew test --tests TestSmoke
+  cd ..
+fi
+
+if [[ $tests == *swift* ]]
+then
+  cd swift/looker || exit
+  echo "Smoking Swift SDK ..."
+  swift test --filter "smoke"
+  cd ../..
+fi
+
+echo "Smoke tests completed"

@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.common.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "pretty": true,
+    "baseUrl": ".",
+    "paths": {
+      "@looker/*": ["packages/*/src"]
+    }
+  },
+  "include": ["packages/*/src"]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@looker/sdk-codegen-utils",
+  "version": "0.3.5-alpha.3",
+  "description": "Looker SDK Codegen utils",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "author": "Looker",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/looker-open-source/sdk-codegen.git",
+    "directory": "packages/sdk-codegen-utils"
+  },
+  "bugs": {
+    "url": "https://github.com/looker-open-source/sdk-codegen/issues"
+  },
+  "homepage": "https://github.com/looker-open-source/sdk-codegen/tree/master/packages/sdk-codegen-utils",
+  "keywords": [
+    "Looker",
+    "SDK",
+    "codegen"
+  ],
+  "scripts": {
+    "watch": "yarn lerna exec --scope @looker/sdk-codegen-utils --stream 'BABEL_ENV=build babel src --root-mode upward --out-dir lib --source-maps --extensions .ts,.tsx --no-comments --watch'"
+  }
+}
